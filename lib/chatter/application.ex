@@ -6,13 +6,15 @@ defmodule Chatter.Application do
   use Application
   alias Vapor.Provider.Dotenv
 
-  def config!() do
+  def set_config!() do
     providers = [%Dotenv{}]
 
     Vapor.load!(providers)
   end
 
   def start(_type, _args) do
+    set_config!()
+
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
