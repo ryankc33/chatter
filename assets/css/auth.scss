@@ -1,0 +1,45 @@
+.auth-body {
+  background: #263238;
+  min-height: 1vh;
+
+  .auth-container {
+    padding: 5em 0;
+  }
+
+  .auth-card {
+    padding: 3em 2em;
+    background: #fff;
+    text-align: center;
+
+    .alert p {
+      margin: 0;
+    }
+
+    .input-group {
+      label {
+        margin-top: 1em;
+        font-weight: 800;
+      }
+
+      input {
+        display: block;
+        width: 100%;
+        border-radius: 0.1em;
+        border: 1px solid #DDD;
+        padding: 1em;
+      }
+    }
+
+    .submit-button {
+      padding: 1em 0;
+
+      button {
+        margin: 1em 0;
+        padding: 1em;
+        width: 100%;
+        background: #263238;
+        border: 0;
+      }
+    }
+  }
+}

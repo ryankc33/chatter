@@ -9,3 +9,5 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+Chatter.Accounts.register_user(%{email: System.get_env("DEFAULT_USER_EMAIL"), password: System.get_env("DEFAULT_USER_PASSWORD")})

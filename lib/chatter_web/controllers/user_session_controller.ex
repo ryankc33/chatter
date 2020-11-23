@@ -4,6 +4,8 @@ defmodule ChatterWeb.UserSessionController do
   alias Chatter.Accounts
   alias ChatterWeb.UserAuth
 
+  plug :put_layout, "auth_layout.html"
+
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)
   end

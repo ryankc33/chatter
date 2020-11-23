@@ -40,6 +40,7 @@ defmodule ChatterWeb do
       use Phoenix.HTML
 
       import ChatterWeb.ErrorHelpers
+      import ChatterWeb.LinkHelpers
       import ChatterWeb.Gettext
       alias ChatterWeb.Router.Helpers, as: Routes
     end
