@@ -15,7 +15,7 @@ config :chatter, ChatterWeb.Endpoint,
   url: [host: "localhost"],
   # secret_key_base: "X0a2WNZJaAavTDMS6hrSPkpNYMGafzlChynad5dyHlhG5U7B8vVWfU74SDWEbuy1",
   render_errors: [view: ChatterWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Chatter.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Chatter.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,

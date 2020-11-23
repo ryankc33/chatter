@@ -29,7 +29,8 @@ defmodule Chatter.Application do
       {
         ChatterWeb.Endpoint,
         secret_key_base: System.get_env("SECRET_KEY_BASE")
-      }
+      },
+      {Phoenix.PubSub, [name: Chatter.PubSub, adapter: Phoenix.PubSub.PG2]}
       # Starts a worker by calling: Chatter.Worker.start_link(arg)
       # {Chatter.Worker, arg},
     ]
