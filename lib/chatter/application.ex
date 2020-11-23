@@ -4,14 +4,30 @@ defmodule Chatter.Application do
   @moduledoc false
 
   use Application
+  alias Vapor.Provider.Dotenv
+
+  def config!() do
+    providers = [%Dotenv{}]
+
+    Vapor.load!(providers)
+  end
 
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      Chatter.Repo,
+      {
+        Chatter.Repo,
+        username: System.get_env("DB_USERNAME"),
+        password: System.get_env("DB_PASSWORD"),
+        database: System.get_env("DB_NAME"),
+        hostname: System.get_env("DB_HOSTNAME"),
+      },
       # Start the endpoint when the application starts
-      ChatterWeb.Endpoint
+      {
+        ChatterWeb.Endpoint,
+        secret_key_base: System.get_env("SECRET_KEY_BASE")
+      }
       # Starts a worker by calling: Chatter.Worker.start_link(arg)
       # {Chatter.Worker, arg},
     ]

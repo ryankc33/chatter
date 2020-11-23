@@ -2,10 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :chatter, Chatter.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "chatter_dev",
-  hostname: "localhost",
+  # username: "postgres",
+  # password: "postgres",
+  # database: "chatter_dev",
+  # hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -16,7 +16,7 @@ config :chatter, Chatter.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :chatter, ChatterWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: {:system, "PORT"}],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
