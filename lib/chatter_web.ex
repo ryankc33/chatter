@@ -23,6 +23,7 @@ defmodule ChatterWeb do
 
       import Plug.Conn
       import ChatterWeb.Gettext
+      import Jason
       alias ChatterWeb.Router.Helpers, as: Routes
     end
   end

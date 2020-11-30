@@ -16,6 +16,10 @@ defmodule ChatterWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :webhooks do
+    plug :accepts, ["json"]
+  end
+
   scope "/", ChatterWeb do
     pipe_through :browser
 
@@ -58,5 +62,13 @@ defmodule ChatterWeb.Router do
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
+  end
+
+  scope "/webhooks", ChatterWeb.Webhooks, as: :webhooks do
+    pipe_through :webhooks
+
+    scope "/v1", V1, as: :v1 do
+      resources "/facebook_messenger", FacebookMessengerController, only: [:index]
+    end
   end
 end
