@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse" id="navbarNav">
-  <ul class="navbar-nav mr-auto">
+  <ul class="navbar-nav ml-auto">
     <%= if @current_user do %>
-      <li class="nav-item"><%= @current_user.email %></li>
+      <li class="nav-item"><a class="nav-link"><%= @current_user.email %></a></li>
       <li class="nav-item"><%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "nav-link" %></li>
       <li class="nav-item"><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "nav-link" %></li>
     <% else %>

@@ -5,6 +5,8 @@ defmodule ChatterWeb.UserRegistrationController do
   alias Chatter.Accounts.User
   alias ChatterWeb.UserAuth
 
+  plug :put_layout, "auth_layout.html"
+
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})
     render(conn, "new.html", changeset: changeset)

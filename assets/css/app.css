@@ -3,4 +3,5 @@
 @import "~bootstrap/scss/bootstrap";
 @import "navbar";
 @import "auth";
+@import "forms";
 
