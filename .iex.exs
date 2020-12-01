@@ -5,4 +5,4 @@ alias Chatter.Repo
 alias Chatter.Accounts
 alias Chatter.Accounts.{ User }
 alias Chatter.Chats
-alias Chatter.Chats.{ ChatNode, Message, MessageParser }
+alias Chatter.Chats.{ ChatNode, Message, MessageParser, FacebookResponder }

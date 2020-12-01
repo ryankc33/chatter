@@ -21,8 +21,8 @@ defmodule Chatter.Chats.MessageParser do
   # }
 
 
-  def parse_message(params) do
-    entry = List.first(params["entry"])
+  def parse_message(%{"entry" => entry_array} = params) do
+    entry = List.first(entry_array)
     message = List.first(entry["messaging"])
 
     %{

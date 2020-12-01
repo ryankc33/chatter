@@ -46,7 +46,10 @@ defmodule Chatter.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:vapor, "~> 0.10.0"},
       {:phx_gen_auth, "~> 0.5", only: [:dev], runtime: false},
-      {:typed_struct, "~> 0.2.1"}
+      {:typed_struct, "~> 0.2.1"},
+      {:tesla, "~> 1.4.0"},
+      # optional, but recommended adapter
+      {:hackney, "~> 1.16.0"}
     ]
   end
 
