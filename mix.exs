@@ -45,7 +45,8 @@ defmodule Chatter.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:vapor, "~> 0.10.0"},
-      {:phx_gen_auth, "~> 0.5", only: [:dev], runtime: false}
+      {:phx_gen_auth, "~> 0.5", only: [:dev], runtime: false},
+      {:typed_struct, "~> 0.2.1"}
     ]
   end
 

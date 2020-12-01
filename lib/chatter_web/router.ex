@@ -68,7 +68,7 @@ defmodule ChatterWeb.Router do
     pipe_through :webhooks
 
     scope "/v1", V1, as: :v1 do
-      resources "/facebook_messenger", FacebookMessengerController, only: [:index]
+      resources "/facebook_messenger", FacebookMessengerController, only: [:index, :create]
     end
   end
 end

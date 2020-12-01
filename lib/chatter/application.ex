@@ -20,10 +20,12 @@ defmodule Chatter.Application do
       # Start the Ecto repository
       {
         Chatter.Repo,
-        username: System.get_env("DB_USERNAME"),
-        password: System.get_env("DB_PASSWORD"),
-        database: System.get_env("DB_NAME"),
-        hostname: System.get_env("DB_HOSTNAME"),
+        [
+          username: System.get_env("DB_USERNAME"),
+          password: System.get_env("DB_PASSWORD"),
+          database: System.get_env("DB_NAME"),
+          hostname: System.get_env("DB_HOSTNAME")
+        ]
       },
       # Start the endpoint when the application starts
       {
