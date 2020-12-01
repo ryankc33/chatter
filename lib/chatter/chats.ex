@@ -2,7 +2,7 @@ defmodule Chatter.Chats do
   alias Ecto
   import Ecto.Query
   alias Chatter.Repo
-  alias Chatter.Chats.{ Message, ChatNode, MessageParser }
+  alias Chatter.Chats.{ Message, ChatNode, MessageParser, MessageResponder }
 
   def list_chats do
     ChatNode
@@ -30,8 +30,18 @@ defmodule Chatter.Chats do
     |> Repo.insert()
   end
 
+  def create_auto_response(string, old_message) do
+    attrs = MessageParser.parse_auto_response(string, old_message)
+    chat_node = first_or_create_chat_node(attrs)
+
+    %Message{}
+    |> Message.changeset(attrs)
+    |> Ecto.Changeset.put_change(:chat_node_id, chat_node.id)
+    |> Repo.insert()
+  end
+
   defp first_or_create_chat_node(attrs) do
-    query = from c in ChatNode, where: c.provider == ^attrs.provider, where: c.provider_sender_id == ^attrs.provider_sender_id, limit: 1
+    query = from c in ChatNode, where: c.provider == ^attrs.provider, where: c.provider_customer_id == ^attrs.provider_customer_id, limit: 1
 
     chat_node =
       case Repo.one(query) do
@@ -40,11 +50,13 @@ defmodule Chatter.Chats do
             create_chat_node(%{
               uuid: Ecto.UUID.generate,
               provider: "facebook",
-              provider_sender_id: attrs.provider_sender_id,
+              provider_customer_id: attrs.provider_customer_id,
               provider_recipient_id: attrs.provider_recipient_id
             })
           new_record
         ok -> ok
       end
   end
+
+  def auto_respond(message), do: MessageResponder.auto_respond(message)
 end

@@ -7,7 +7,7 @@ defmodule Chatter.Chats.ChatNode do
   schema "chat_nodes" do
     field :uuid, :string
     field :provider, :string
-    field :provider_sender_id, :string
+    field :provider_customer_id, :string
     field :provider_recipient_id, :string
     has_many :messages, Message
 
@@ -15,7 +15,7 @@ defmodule Chatter.Chats.ChatNode do
   end
 
   def changeset(chat_node, attrs) do
-    arr = [:uuid, :provider, :provider_sender_id, :provider_recipient_id]
+    arr = [:uuid, :provider, :provider_customer_id, :provider_recipient_id]
 
     chat_node
     |> cast(attrs, arr)

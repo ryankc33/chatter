@@ -2,7 +2,12 @@ defmodule ChatterWeb.Webhooks.V1.FacebookMessengerController do
   use ChatterWeb, :controller
   alias Chatter.Chats
 
-  def index(conn, %{"hub.challenge" => challenge, "hub.mode" => mode, "hub.verify_token" => verify_token} = params) do
+  def index(conn, %{
+    "hub.challenge" => challenge,
+    "hub.mode" => mode,
+    "hub.verify_token" => verify_token} = params
+    ) do
+
     if is_valid_challenge(mode, verify_token, challenge) do
       conn
       |> put_status(200)
@@ -15,9 +20,8 @@ defmodule ChatterWeb.Webhooks.V1.FacebookMessengerController do
   end
 
   def create(conn, params) do
-    IO.inspect conn
-
-    Chats.create_message(params)
+    {:ok, message} = Chats.create_message(params)
+    {:ok, response} = Chats.auto_respond(message)
 
     conn
     |> put_status(200)
