@@ -58,5 +58,9 @@ defmodule Chatter.Chats do
       end
   end
 
-  def auto_respond(message), do: MessageResponder.auto_respond(message)
+  def auto_respond(message) do
+    Task.Supervisor.start_child(
+      __MODULE__, MessageResponder, :auto_respond, [message], restart: :transient
+    )
+  end
 end

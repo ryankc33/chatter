@@ -3,6 +3,8 @@ defmodule Chatter.Chats.Robots.Diamond do
   @doc """
   Given a letter, it prints a diamond starting with 'A',
   with the supplied letter at the widest point.
+
+  from https://exercism.io/my/solutions/843d3019faeb4170b79f7fabb658169e
   """
   @offset 1
   @dimension_multiplier 2
