@@ -12,6 +12,7 @@ defmodule Chatter.Chats do
   def get_chat(id) do
     ChatNode
     |> Repo.get(id)
+    |> Repo.preload(:messages)
   end
 
   def create_chat_node(attrs \\ %{}) do

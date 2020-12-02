@@ -1,0 +1,29 @@
+<div class="row py-3">
+  <div class="col-3" id="sticky-sidebar">
+    <div class="sticky-top">
+        ...
+    </div>
+  </div>
+  <div class="col" id="main">
+    <h1>Dashboard</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Provider</th>
+        </tr>
+      </thead>
+      <tbody id="posts">
+        <%= for chat <- @chat_nodes do %>
+          <tr id="chat-<%= chat.id %>">
+            <td><%= chat.id %></td>
+            <td><%= chat.provider %></td>
+            <td>
+              <span><%= live_redirect "Show", to: Routes.chats_show_path(@socket, :show, chat) %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -49,7 +49,9 @@ defmodule Chatter.MixProject do
       {:typed_struct, "~> 0.2.1"},
       {:tesla, "~> 1.4.0"},
       # optional, but recommended adapter
-      {:hackney, "~> 1.16.0"}
+      {:hackney, "~> 1.16.0"},
+      {:phoenix_live_view, "~> 0.14.6"},
+      {:floki, ">= 0.27.0", only: :test}
     ]
   end
 
