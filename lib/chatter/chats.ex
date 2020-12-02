@@ -29,6 +29,7 @@ defmodule Chatter.Chats do
     |> Message.changeset(attrs)
     |> Ecto.Changeset.put_change(:chat_node_id, chat_node.id)
     |> Repo.insert()
+    |> broadcast(:message_created)
   end
 
   def create_auto_response(string, old_message) do
@@ -39,6 +40,7 @@ defmodule Chatter.Chats do
     |> Message.changeset(attrs)
     |> Ecto.Changeset.put_change(:chat_node_id, chat_node.id)
     |> Repo.insert()
+    |> broadcast(:message_created)
   end
 
   defp first_or_create_chat_node(attrs) do
@@ -63,5 +65,17 @@ defmodule Chatter.Chats do
     Task.Supervisor.start_child(
       __MODULE__, MessageResponder, :auto_respond, [message], restart: :transient
     )
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Chatter.PubSub, "messages")
+  end
+
+  defp broadcast({:error, _reason} = error, _event), do: error
+  defp broadcast({:ok, message}, event) do
+    IO.inspect message, label: "handled"
+
+    Phoenix.PubSub.broadcast(Chatter.PubSub, "messages", {event, message})
+    {:ok, message}
   end
 end

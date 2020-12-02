@@ -6,17 +6,7 @@
   <h1>Chat #<%= @chat.id %></h1>
   <ul class="chatbox">
     <%= for message <- @messages do %>
-      <%= if message.message_type == "customer" do %>
-        <li class="customer-message">
-          <div class="user-id"><strong>User: <%= message.provider_customer_id %></strong></div>
-          <div class="message-body"><%= raw message.message_body %></div>
-        </li>
-      <% else %>
-        <li class="system-message">
-          <div class="user-id"><strong><%= message.message_type %></strong></div>
-          <div class="message-body"><%= raw message.message_body %></div>
-        </li>
-      <% end %>
+      <%= live_component @socket, ChatterWeb.Live.Chats.MessageComponent, id: message.id, message: message %>
     <% end %>
   </ul>
 </div>
