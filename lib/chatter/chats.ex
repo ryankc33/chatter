@@ -64,7 +64,10 @@ defmodule Chatter.Chats do
   end
 
   defp first_or_create_chat_node(attrs) do
-    query = from c in ChatNode, where: c.provider == ^attrs.provider, where: c.provider_customer_id == ^attrs.provider_customer_id, limit: 1
+    query = from c in ChatNode,
+      where: c.provider == ^attrs.provider,
+      where: c.provider_customer_id == ^attrs.provider_customer_id,
+      limit: 1
 
     chat_node =
       case Repo.one(query) do
