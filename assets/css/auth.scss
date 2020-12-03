@@ -1,6 +1,6 @@
 .auth-body {
-  background: #263238;
   min-height: 1vh;
+
 
   .auth-container {
     padding: 5em 0;
@@ -10,6 +10,7 @@
     padding: 3em 2em;
     background: #fff;
     text-align: center;
+    color: $gray-900;
 
     .alert p {
       margin: 0;
@@ -37,7 +38,6 @@
         margin: 1em 0;
         padding: 1em;
         width: 100%;
-        background: #263238;
         border: 0;
       }
     }

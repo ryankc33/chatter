@@ -26,8 +26,8 @@
 
     <div class="auth-links">
       <p>
-        <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-        <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+        <%# <%= link "Register", to: Routes.user_registration_path(@conn, :new) %>
+        <%# <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
       </p>
     </div>
   </div>

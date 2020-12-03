@@ -10,7 +10,7 @@
   </head>
   <body>
     <%= render "_topnav.html", assigns %>
-    <main role="main" class="container">
+    <main role="main">
       <%= render "_flash.html", assigns %>
 
       <%= @inner_content %>

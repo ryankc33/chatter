@@ -1,0 +1,21 @@
+<div class="landing">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="jumbotron mt-5 pt-5">
+          <h1 class="display-4">Chatter</h1>
+          <p class="lead">Your social media chat command center</p>
+          <hr class="my-4">
+          <p class="lead">
+            <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "#{active_class(@conn, Routes.user_session_path(@conn, :new))} btn btn-primary btn-lg" %></li>
+          </p>
+        </div>
+        <h1></h1>
+      </div>
+      <div class="col-md-6 hero-anim">
+      </div>
+    </div>
+  </div>
+</div>
+
+

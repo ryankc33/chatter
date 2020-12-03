@@ -1,9 +1,11 @@
 /* This file is for your main application css. */
 
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap_overrides/imports";
+
 @import "navbar";
 @import "auth";
 @import "forms";
 @import "liveview";
 @import "chats";
+@import "landing";
 

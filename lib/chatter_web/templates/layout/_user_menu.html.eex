@@ -2,11 +2,11 @@
   <ul class="navbar-nav ml-auto">
     <%= if @current_user do %>
       <li class="nav-item"><a class="nav-link"><%= @current_user.email %></a></li>
-      <li class="nav-item"><%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "nav-link" %></li>
-      <li class="nav-item"><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "nav-link" %></li>
+      <%# <li class="nav-item"><%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "nav-link" %>
     <% else %>
-      <li class="nav-item"><%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "nav-link" %></li>
-      <li class="nav-item"><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "#{active_class(@conn, Routes.user_session_path(@conn, :new))} nav-link" %></li>
+      <%# <li class="nav-item"><%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "nav-link" %>
+      <li class="nav-item">
+        <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "#{active_class(@conn, Routes.user_session_path(@conn, :new))} btn btn-primary" %></li>
     <% end %>
   </ul>
 </div>
