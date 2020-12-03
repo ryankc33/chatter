@@ -3,17 +3,24 @@ defmodule ChatterWeb.Live.Chats.MessageComponent do
 
   def render(assigns) do
     ~L"""
-    <%= if @message.message_type == "customer" do %>
-      <li class="customer-message" id=<% @message.id%>>
-        <div class="user-id"><strong>User: <%= @message.provider_customer_id %></strong></div>
-        <div class="message-body"><%= raw @message.message_body %></div>
-      </li>
-    <% else %>
-      <li class="system-message" id=<%= @message.id %>>
-        <div class="user-id"><strong><%= @message.message_type %></strong></div>
-        <div class="message-body"><%= raw @message.message_body %></div>
-      </li>
-    <% end %>
+    <li class="customer-message" id=<% @message.id%>>
+      <div class="user-id">
+        <strong>
+          <%= if @message.message_type == "customer" do %>
+            Customer:
+          <% else %>
+            <%= @message.message_type %>
+          <% end %>
+          <%= @message.provider_customer_id %>
+        </strong>
+      </div>
+      <div class="message-body">
+        <small><%= @message.id %> | <%= @message.inserted_at %></small>
+        <p class="lead">
+          <%= raw @message.message_body %>
+        </p>
+      </div>
+    </li>
     """
   end
 end

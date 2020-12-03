@@ -10,9 +10,15 @@ defmodule Chatter.Chats do
   end
 
   def get_chat(id) do
-    ChatNode
-    |> Repo.get(id)
-    |> Repo.preload(:messages)
+    message_query = from(m in Message, order_by: [asc: m.id])
+
+    query = from chat in ChatNode,
+           where: chat.id == ^id,
+           preload: [
+              messages: ^message_query
+           ]
+
+    Repo.one(query)
   end
 
   def create_chat_node(attrs \\ %{}) do
