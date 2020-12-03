@@ -4,9 +4,11 @@
 
 <div class="row" id="main">
   <h1>Chat #<%= @chat.id %></h1>
-  <ul class="chatbox">
+  <ul class="chatbox" phx-update="append" id="chatbox">
     <%= for message <- @messages do %>
       <%= live_component @socket, ChatterWeb.Live.Chats.MessageComponent, id: message.id, message: message %>
     <% end %>
   </ul>
+
+  <%= live_component @socket, ChatterWeb.Live.Chats.MessageFormComponent, id: :new, changeset: @new_message %>
 </div>

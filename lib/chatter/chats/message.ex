@@ -23,4 +23,15 @@ defmodule Chatter.Chats.Message do
     |> cast(attrs, arr)
     |> validate_required(arr)
   end
+
+  def user_changeset(message, attrs) do
+    IO.inspect message, label: "message"
+    IO.inspect attrs, label: "attrs"
+
+    arr = [:message_body]
+    m = message
+        |> cast(attrs, arr)
+        |> validate_required(arr)
+    IO.inspect m, label: "message after"
+  end
 end

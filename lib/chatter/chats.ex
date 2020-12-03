@@ -43,6 +43,10 @@ defmodule Chatter.Chats do
     |> broadcast(:message_created)
   end
 
+  def change_user_message(message, attrs \\ %{}) do
+    Message.user_changeset(message, attrs)
+  end
+
   defp first_or_create_chat_node(attrs) do
     query = from c in ChatNode, where: c.provider == ^attrs.provider, where: c.provider_customer_id == ^attrs.provider_customer_id, limit: 1
 
