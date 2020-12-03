@@ -10,5 +10,5 @@
     <% end %>
   </ul>
 
-  <%= live_component @socket, ChatterWeb.Live.Chats.MessageFormComponent, id: :new, changeset: @new_message %>
+  <%= live_component @socket, ChatterWeb.Live.Chats.MessageFormComponent, id: :new, message: @new_message, chat_node: @chat, changeset: @message_changeset %>
 </div>

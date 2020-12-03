@@ -43,7 +43,17 @@ defmodule Chatter.Chats do
     |> broadcast(:message_created)
   end
 
-  def change_user_message(message, attrs \\ %{}) do
+  def create_user_message(%{"message_body" => message}, chat_node) do
+    attrs = Message.form_user_message(message, chat_node)
+
+    %Message{}
+    |> Message.changeset(attrs)
+    |> Ecto.Changeset.put_change(:chat_node_id, chat_node.id)
+    |> Repo.insert()
+    |> broadcast(:message_created)
+  end
+
+  def change_user_message(%Message{} = message, attrs \\ %{}) do
     Message.user_changeset(message, attrs)
   end
 

@@ -14,9 +14,11 @@ defmodule ChatterWeb.ChatsLive.Show do
     sock =
       socket
       |> authenticate_user(session)
-      |> assign(chat: chat, messages: messages)
+      |> assign(chat: chat)
+      |> assign(messages: messages)
       |> assign(page_title: "Chat")
-      |> assign(new_message: Chats.change_user_message(%Message{})) #initialize message for MessageFormComponent
+      |> assign(new_message: %Message{})
+      |> assign(message_changeset: Chats.change_user_message(%Message{})) #initialize message for MessageFormComponent
 
     {:ok, sock, temporary_assigns: [messages: []]}
   end

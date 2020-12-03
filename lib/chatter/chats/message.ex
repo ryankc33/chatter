@@ -25,13 +25,21 @@ defmodule Chatter.Chats.Message do
   end
 
   def user_changeset(message, attrs) do
-    IO.inspect message, label: "message"
-    IO.inspect attrs, label: "attrs"
-
     arr = [:message_body]
     m = message
         |> cast(attrs, arr)
         |> validate_required(arr)
-    IO.inspect m, label: "message after"
+  end
+
+  def form_user_message(message_body, chat_node) do
+    %{
+      provider: "user",
+      provider_message_id: "none",
+      provider_customer_id: chat_node.provider_customer_id,
+      provider_recipient_id: chat_node.provider_recipient_id,
+      message_body: message_body,
+      message_store: %{message_body: message_body},
+      message_type: "user",
+    }
   end
 end
