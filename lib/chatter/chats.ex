@@ -57,6 +57,13 @@ defmodule Chatter.Chats do
     |> Ecto.Changeset.put_change(:chat_node_id, chat_node.id)
     |> Repo.insert()
     |> broadcast(:message_created)
+    |> transmit()
+  end
+
+  def transmit(message) do
+    Task.Supervisor.start_child(
+      __MODULE__, MessageResponder, :user_response, [message], restart: :transient
+    )
   end
 
   def change_user_message(%Message{} = message, attrs \\ %{}) do
